@@ -1,0 +1,61 @@
+class Person:
+    def __init__(self, full_name, driving_experience):
+        self.full_name = full_name
+        self.driving_experience = driving_experience
+
+class Engine:
+    def __init__(self, power, manufacturer):
+        self.power = power
+        self.manufacturer = manufacturer
+
+class Car:
+    def __init__(self, car_brand, car_class, weight, driver, engine):
+        self.car_brand = car_brand
+        self.car_class = car_class
+        self.weight = weight
+        self.driver = driver
+        self.engine = engine
+
+    def start(self):
+        print("Let's go")
+
+    def stop(self):
+        print("Stop")
+
+    def turn_right(self):
+        print("Turn right")
+
+    def turn_left(self):
+        print("Turn left")
+
+    def __str__(self):
+        return f"Car: {self.car_brand} {self.car_class}\nWeight: {self.weight}\nDriver: {self.driver.full_name} ({self.driver.driving_experience})\nEngine: {self.engine.power} ({self.engine.manufacturer})"
+
+class Lorry(Car):
+    def __init__(self, car_brand, car_class, weight, driver, engine, load_capacity):
+        super().__init__(car_brand, car_class, weight, driver, engine)
+        self.load_capacity = load_capacity
+
+    def __str__(self):
+        return super().__str__() + f"\nLoad capacity: {self.load_capacity}"
+
+class SportCar(Car):
+    def __init__(self, car_brand, car_class, weight, driver, engine, speed_limit):
+        super().__init__(car_brand, car_class, weight, driver, engine)
+        self.speed_limit = speed_limit
+
+    def __str__(self):
+        return super().__str__() + f"\nSpeed limit: {self.speed_limit}"
+
+
+
+engine = Engine(300, "Mercedes")
+driver = Person("John Doe", "10 years")
+car = Car("Toyota", "SUV", 2000, driver, engine)
+print(car) # Car: Toyota SUV\nWeight: 2000\nDriver: John Doe (10 years)\nEngine: 300 (Mercedes)
+
+lorry = Lorry("Scania", "Truck", 8000, driver, engine, 20000)
+print(lorry) # Car: Scania Truck\nWeight: 8000\nDriver: John Doe (10 years)\nEngine: 300 (Mercedes)\nLoad capacity: 20000
+
+sportcar = SportCar("Ferrari", "Sport", 1500, driver, engine, 300)
+print(sportcar) # Car: Ferrari Sport\nWeight: 1500\nDriver: John Doe (10 years)\nEngine: 300 (Mercedes)\nSpeed limit: 300
